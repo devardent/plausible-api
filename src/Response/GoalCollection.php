@@ -22,7 +22,7 @@ class GoalCollection extends BaseCollection
         return $goals;
     }
 
-    public function current(): Website
+    public function current(): Goal
     {
         return $this->items[$this->position];
     }
