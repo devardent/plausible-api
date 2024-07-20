@@ -18,4 +18,13 @@ class Website extends BaseObject
 
         return $website;
     }
+
+    public static function fromArray(array $data): self
+    {
+        $website = new self();
+
+        $website->createProperties($data);
+
+        return $website;
+    }
 }

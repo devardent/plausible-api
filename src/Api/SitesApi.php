@@ -5,6 +5,7 @@ namespace Devarts\PlausiblePHP\Api;
 use Devarts\PlausiblePHP\Response\Goal;
 use Devarts\PlausiblePHP\Response\SharedLink;
 use Devarts\PlausiblePHP\Response\Website;
+use Devarts\PlausiblePHP\Response\WebsitesListResponse;
 
 class SitesApi extends BaseApi
 {
@@ -31,6 +32,15 @@ class SitesApi extends BaseApi
         $response = $this->configuration->getClient()->delete('v1/sites/' . urlencode($site_id));
 
         return json_decode($response->getBody()->getContents(), true)['deleted'];
+    }
+
+    public function listWebsites(array $params): WebsitesListResponse
+    {
+        $response = $this->configuration->getClient()->get('v1/sites', [
+            'query' => $params,
+        ]);
+
+        return WebsitesListResponse::fromApiResponse($response->getBody()->getContents());
     }
 
     public function getWebsite(string $site_id): Website
