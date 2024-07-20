@@ -4,6 +4,7 @@ namespace Devarts\PlausiblePHP\Response;
 
 /**
  * @property int $id
+ * @property string $display_name
  * @property string $domain
  * @property string $goal_type
  * @property string|null $event_name
