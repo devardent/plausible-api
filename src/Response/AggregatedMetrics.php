@@ -11,6 +11,7 @@ namespace Devarts\PlausiblePHP\Response;
  * @property AggregatedMetric $visits
  * @property AggregatedMetric $conversion_rate
  * @property AggregatedMetric $time_on_page
+ * @property AggregatedMetric $views_per_visit
  */
 class AggregatedMetrics extends BaseObject
 {
