@@ -49,9 +49,14 @@ class Filter
         return $filters;
     }
 
-    public function addEventName($value, string $comparison = self::EQUAL): self
+    public function addEventGoal($value, string $comparison = self::EQUAL): self
     {
-        return $this->add(Property::EVENT_NAME, $value, $comparison);
+        return $this->add(Property::EVENT_GOAL, $value, $comparison);
+    }
+
+    public function addEventHostname($value, string $comparison = self::EQUAL): self
+    {
+        return $this->add(Property::EVENT_HOSTNAME, $value, $comparison);
     }
 
     public function addEventPage($value, string $comparison = self::EQUAL): self
