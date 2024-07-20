@@ -4,13 +4,6 @@ namespace Devarts\PlausiblePHP\Response;
 
 class WebsiteCollection extends BaseCollection
 {
-    public static function fromApiResponse(string $json): self
-    {
-        $data = json_decode($json, true)['sites'];
-
-        return self::fromArray($data);
-    }
-
     public static function fromArray(array $data): self
     {
         $websites = new self();
