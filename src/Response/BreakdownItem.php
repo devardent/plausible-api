@@ -22,14 +22,15 @@ namespace Devarts\PlausiblePHP\Response;
  * @property string $country
  * @property string $region
  * @property string $city
- * @property int|null $bounce_rate
- * @property int|null $visit_duration
+ * @property float|null $bounce_rate
+ * @property float|null $visit_duration
  * @property int|null $pageviews
  * @property int|null $visits
  * @property int|null $visitors
  * @property float|null $views_per_visit
  * @property int|null $events
  * @property float|null $conversion_rate
+ * @property float|null $time_on_page
  */
 class BreakdownItem extends BaseObject
 {

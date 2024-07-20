@@ -7,8 +7,8 @@ use Exception;
 
 /**
  * @property DateTime $date
- * @property int|null $bounce_rate
- * @property int|null $visit_duration
+ * @property float|null $bounce_rate
+ * @property float|null $visit_duration
  * @property int|null $pageviews
  * @property int|null $visits
  * @property int|null $visitors
