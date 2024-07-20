@@ -18,6 +18,11 @@ class AggregatedMetrics extends BaseObject
     {
         $data = json_decode($json, true)['results'];
 
+        return self::fromArray($data);
+    }
+
+    public static function fromArray(array $data): self
+    {
         $aggregated_metrics = new self();
 
         $aggregated_metrics->createProperties($data);

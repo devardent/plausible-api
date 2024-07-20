@@ -12,6 +12,11 @@ class GoalsListResponse extends BaseObject
     {
         $data = json_decode($json, true);
 
+        return self::fromArray($data);
+    }
+
+    public static function fromArray(array $data): self
+    {
         $goals_list_response = new self();
 
         $goals_list_response->createProperties($data);

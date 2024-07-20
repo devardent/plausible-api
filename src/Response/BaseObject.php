@@ -2,9 +2,10 @@
 
 namespace Devarts\PlausiblePHP\Response;
 
+use Devarts\PlausiblePHP\Contract\ApiResponseObject;
 use stdClass;
 
-abstract class BaseObject extends stdClass
+abstract class BaseObject extends stdClass implements ApiResponseObject
 {
     protected function __construct() {}
 

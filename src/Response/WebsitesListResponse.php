@@ -12,6 +12,11 @@ class WebsitesListResponse extends BaseObject
     {
         $data = json_decode($json, true);
 
+        return self::fromArray($data);
+    }
+
+    public static function fromArray(array $data): self
+    {
         $websites_list_response = new self();
 
         $websites_list_response->createProperties($data);

@@ -8,13 +8,7 @@ class GoalCollection extends BaseCollection
     {
         $data = json_decode($json, true)['goals'];
 
-        $goals = new self();
-
-        foreach ($data as $item) {
-            $goals->items[] = Goal::fromArray($item);
-        }
-
-        return $goals;
+        return self::fromArray($data);
     }
 
     public static function fromArray(array $data): self

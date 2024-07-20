@@ -12,11 +12,7 @@ class Website extends BaseObject
     {
         $data = json_decode($json, true);
 
-        $website = new self();
-
-        $website->createProperties($data);
-
-        return $website;
+        return self::fromArray($data);
     }
 
     public static function fromArray(array $data): self

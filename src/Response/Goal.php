@@ -15,11 +15,7 @@ class Goal extends BaseObject
     {
         $data = json_decode($json, true);
 
-        $goal = new self();
-
-        $goal->createProperties($data);
-
-        return $goal;
+        return self::fromArray($data);
     }
 
     public static function fromArray(array $data): self

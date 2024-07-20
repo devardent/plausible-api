@@ -8,13 +8,7 @@ class WebsiteCollection extends BaseCollection
     {
         $data = json_decode($json, true)['sites'];
 
-        $websites = new self();
-
-        foreach ($data as $item) {
-            $websites->items[] = Website::fromArray($item);
-        }
-
-        return $websites;
+        return self::fromArray($data);
     }
 
     public static function fromArray(array $data): self
