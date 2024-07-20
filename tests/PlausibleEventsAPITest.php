@@ -9,16 +9,17 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
 
-class PlausibleAPITest extends TestCase
+class PlausibleEventsAPITest extends TestCase
 {
     /**
+     * @test
      * @testWith ["https://plausible.io/api/", null]
      *           ["https://plausible.io/api/", "https://plausible.io/api/v1/"]
      *           ["https://plausible.io/api", "https://plausible.io/api/v1"]
      *           ["https://example.com/path/to/plausible/", "https://example.com/path/to/plausible/v1/"]
      *           ["https://example.com/path/to/plausible", "https://example.com/path/to/plausible/v1"]
      */
-    public function testBaseUri(string $expected_base_uri, ?string $passed_base_uri): void
+    public function it_should_return_base_uri(string $expected_base_uri, ?string $passed_base_uri): void
     {
         if ($passed_base_uri !== null) {
             $plausible = new PlausibleAPI(Configuration::create('an_api_token', $passed_base_uri));
@@ -32,20 +33,18 @@ class PlausibleAPITest extends TestCase
         $this->assertSame($expected_base_uri, (string) $baseUri);
     }
 
-    public function testRecordEvent(): void
+    /**
+     * @test
+     */
+    public function it_should_record_event(): void
     {
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(202);
 
-        $configuration = $this->createMock(Configuration::class);
-        $client = $this->createMock(Client::class);
+        $configuration = $this->mockConfiguration();
 
         $configuration
-            ->expects($this->once())
-            ->method('getClient')
-            ->willReturn($client);
-
-        $client
+            ->getClient()
             ->expects($this->once())
             ->method('post')
             ->with(
@@ -87,20 +86,18 @@ class PlausibleAPITest extends TestCase
         ));
     }
 
-    public function testRecordEventExcludingOptionalValues(): void
+    /**
+     * @test
+     */
+    public function it_should_record_event_excluding_optional_values(): void
     {
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(202);
 
-        $configuration = $this->createMock(Configuration::class);
-        $client = $this->createMock(Client::class);
+        $configuration = $this->mockConfiguration();
 
         $configuration
-            ->expects($this->once())
-            ->method('getClient')
-            ->willReturn($client);
-
-        $client
+            ->getClient()
             ->expects($this->once())
             ->method('post')
             ->with(
@@ -130,20 +127,21 @@ class PlausibleAPITest extends TestCase
         ));
     }
 
-    public function testRecordEventReturnsFalseWhenUnsuccessful(): void
+    /**
+     * @test
+     */
+    public function it_should_not_record_event_when_request_is_unsuccessful(): void
     {
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(400);
 
-        $configuration = $this->createMock(Configuration::class);
-        $client = $this->createMock(Client::class);
+        $configuration = $this->mockConfiguration();
 
         $configuration
+            ->getClient()
             ->expects($this->once())
-            ->method('getClient')
-            ->willReturn($client);
-
-        $client->method('post')->willReturn($response);
+            ->method('post')
+            ->willReturn($response);
 
         $plausible = new PlausibleAPI($configuration);
 
@@ -154,5 +152,19 @@ class PlausibleAPITest extends TestCase
             'MyAgent/2.0',
             '4.243.144.9',
         ));
+    }
+
+    private function mockConfiguration(): Configuration
+    {
+        $configuration = $this->createMock(Configuration::class);
+
+        $client = $this->createMock(Client::class);
+
+        $configuration
+            ->expects($this->any())
+            ->method('getClient')
+            ->willReturn($client);
+
+        return $configuration;
     }
 }
