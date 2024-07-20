@@ -21,4 +21,13 @@ class Goal extends BaseObject
 
         return $goal;
     }
+
+    public static function fromArray(array $data): self
+    {
+        $goal = new self();
+
+        $goal->createProperties($data);
+
+        return $goal;
+    }
 }

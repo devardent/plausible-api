@@ -3,27 +3,27 @@
 namespace Devarts\PlausiblePHP\Response;
 
 /**
- * @property WebsiteCollection $sites
+ * @property GoalCollection $goals
  * @property PaginationMeta $meta
  */
-class WebsitesListResponse extends BaseObject
+class GoalsListResponse extends BaseObject
 {
     public static function fromApiResponse(string $json): self
     {
         $data = json_decode($json, true);
 
-        $websites_list_response = new self();
+        $goals_list_response = new self();
 
-        $websites_list_response->createProperties($data);
+        $goals_list_response->createProperties($data);
 
-        return $websites_list_response;
+        return $goals_list_response;
     }
 
     protected function createProperty($name, $value): void
     {
         switch ($name) {
-            case 'sites':
-                $this->$name = WebsiteCollection::fromArray($value);
+            case 'goals':
+                $this->$name = GoalCollection::fromArray($value);
                 break;
             case 'meta':
                 $this->$name = PaginationMeta::fromArray($value);

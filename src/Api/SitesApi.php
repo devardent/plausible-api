@@ -3,6 +3,7 @@
 namespace Devarts\PlausiblePHP\Api;
 
 use Devarts\PlausiblePHP\Response\Goal;
+use Devarts\PlausiblePHP\Response\GoalsListResponse;
 use Devarts\PlausiblePHP\Response\SharedLink;
 use Devarts\PlausiblePHP\Response\Website;
 use Devarts\PlausiblePHP\Response\WebsitesListResponse;
@@ -57,6 +58,20 @@ class SitesApi extends BaseApi
         ]);
 
         return SharedLink::fromApiResponse($response->getBody()->getContents());
+    }
+
+    public function listGoals(string $site_id, array $extras = []): GoalsListResponse
+    {
+        $response = $this->configuration->getClient()->get('v1/sites/goals', [
+            'query' => array_merge(
+                $extras,
+                [
+                    'site_id' => $site_id,
+                ],
+            ),
+        ]);
+
+        return GoalsListResponse::fromApiResponse($response->getBody()->getContents());
     }
 
     public function createGoal(array $payload): Goal
