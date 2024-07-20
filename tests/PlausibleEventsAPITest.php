@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
 
-class PlausibleEventsAPITest extends TestCase
+class PlausibleEventsAPITest extends PlausibleAPITestCase
 {
     /**
      * @test
@@ -152,19 +152,5 @@ class PlausibleEventsAPITest extends TestCase
             'MyAgent/2.0',
             '4.243.144.9',
         ));
-    }
-
-    private function mockConfiguration(): Configuration
-    {
-        $configuration = $this->createMock(Configuration::class);
-
-        $client = $this->createMock(Client::class);
-
-        $configuration
-            ->expects($this->any())
-            ->method('getClient')
-            ->willReturn($client);
-
-        return $configuration;
     }
 }
