@@ -3,7 +3,7 @@
 namespace Devarts\PlausiblePHP\Response;
 
 /**
- * @property string $name
+ * @property string $goal
  * @property string $page
  * @property string $entry_page
  * @property string $exit_page
@@ -24,7 +24,7 @@ namespace Devarts\PlausiblePHP\Response;
  * @property string $city
  * @property int|null $visitors
  * @property int|null $pageviews
- * @property int|null $bounce_rate
+ * @property float|null $bounce_rate
  * @property int|null $visit_duration
  * @property int|null $events
  * @property int|null $visits
