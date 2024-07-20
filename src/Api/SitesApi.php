@@ -10,7 +10,7 @@ class SitesApi extends BaseApi
 {
     public function createWebsite(array $payload): Website
     {
-        $response = $this->client->post('v1/sites', [
+        $response = $this->configuration->getClient()->post('v1/sites', [
             'form_params' => $payload,
         ]);
 
@@ -19,7 +19,7 @@ class SitesApi extends BaseApi
 
     public function updateWebsite(string $site_id, array $payload): Website
     {
-        $response = $this->client->put('v1/sites/' . urlencode($site_id), [
+        $response = $this->configuration->getClient()->put('v1/sites/' . urlencode($site_id), [
             'form_params' => $payload,
         ]);
 
@@ -28,21 +28,21 @@ class SitesApi extends BaseApi
 
     public function deleteWebsite(string $site_id): bool
     {
-        $response = $this->client->delete('v1/sites/' . urlencode($site_id));
+        $response = $this->configuration->getClient()->delete('v1/sites/' . urlencode($site_id));
 
         return json_decode($response->getBody()->getContents(), true)['deleted'];
     }
 
     public function getWebsite(string $site_id): Website
     {
-        $response = $this->client->get('v1/sites/' . urlencode($site_id));
+        $response = $this->configuration->getClient()->get('v1/sites/' . urlencode($site_id));
 
         return Website::fromApiResponse($response->getBody()->getContents());
     }
 
     public function createSharedLink(array $payload): SharedLink
     {
-        $response = $this->client->put('v1/sites/shared-links', [
+        $response = $this->configuration->getClient()->put('v1/sites/shared-links', [
             'form_params' => $payload,
         ]);
 
@@ -51,7 +51,7 @@ class SitesApi extends BaseApi
 
     public function createGoal(array $payload): Goal
     {
-        $response = $this->client->put('v1/sites/goals', [
+        $response = $this->configuration->getClient()->put('v1/sites/goals', [
             'form_params' => $payload,
         ]);
 
@@ -60,7 +60,7 @@ class SitesApi extends BaseApi
 
     public function deleteGoal(int $goal_id, string $site_id): bool
     {
-        $response = $this->client->delete('v1/sites/goals/' . urlencode((string) $goal_id), [
+        $response = $this->configuration->getClient()->delete('v1/sites/goals/' . urlencode((string) $goal_id), [
             'form_params' => [
                 'site_id' => $site_id,
             ],

@@ -10,7 +10,7 @@ class StatsApi extends BaseApi
 {
     public function getRealtimeVisitors(string $site_id): int
     {
-        $response = $this->client->get('v1/stats/realtime/visitors', [
+        $response = $this->configuration->getClient()->get('v1/stats/realtime/visitors', [
             'query' => [
                 'site_id' => $site_id,
             ],
@@ -21,7 +21,7 @@ class StatsApi extends BaseApi
 
     public function getAggregate(string $site_id, array $extras = []): AggregatedMetrics
     {
-        $response = $this->client->get('v1/stats/aggregate', [
+        $response = $this->configuration->getClient()->get('v1/stats/aggregate', [
             'query' => array_merge(
                 $extras,
                 [
@@ -35,7 +35,7 @@ class StatsApi extends BaseApi
 
     public function getTimeseries(string $site_id, array $extras = []): TimeseriesCollection
     {
-        $response = $this->client->get('v1/stats/timeseries', [
+        $response = $this->configuration->getClient()->get('v1/stats/timeseries', [
             'query' => array_merge(
                 $extras,
                 [
@@ -49,7 +49,7 @@ class StatsApi extends BaseApi
 
     public function getBreakdown(string $site_id, string $property, array $extras = []): BreakdownCollection
     {
-        $response = $this->client->get('v1/stats/breakdown', [
+        $response = $this->configuration->getClient()->get('v1/stats/breakdown', [
             'query' => array_merge(
                 $extras,
                 [

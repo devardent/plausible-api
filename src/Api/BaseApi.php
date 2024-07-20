@@ -2,14 +2,14 @@
 
 namespace Devarts\PlausiblePHP\Api;
 
-use GuzzleHttp\Client;
+use Devarts\PlausiblePHP\Configuration;
 
 abstract class BaseApi
 {
-    protected Client $client;
+    protected Configuration $configuration;
 
-    public function __construct(Client $client)
+    public function __construct(Configuration $configuration)
     {
-        $this->client = $client;
+        $this->configuration = $configuration;
     }
 }

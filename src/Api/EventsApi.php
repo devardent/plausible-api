@@ -36,7 +36,7 @@ class EventsApi extends BaseApi
         ?array $properties = null,
         ?array $revenue = null
     ): bool {
-        $response = $this->client->post('event', [
+        $response = $this->configuration->getClient()->post('event', [
             'headers' => [
                 'user-agent' => $user_agent,
                 'x-forwarded-for' => $ip_address,
