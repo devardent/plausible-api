@@ -2,9 +2,9 @@
 
 namespace Devarts\PlausiblePHP;
 
-use Devarts\PlausiblePHP\Api\EventsApi;
-use Devarts\PlausiblePHP\Api\SitesApi;
-use Devarts\PlausiblePHP\Api\StatsApi;
+use Devarts\PlausiblePHP\Api\EventsAPI;
+use Devarts\PlausiblePHP\Api\SitesAPI;
+use Devarts\PlausiblePHP\Api\StatsAPI;
 
 class PlausibleAPI
 {
@@ -23,18 +23,18 @@ class PlausibleAPI
         return $this->configuration;
     }
 
-    public function stats(): StatsApi
+    public function stats(): StatsAPI
     {
-        return new StatsApi($this->configuration);
+        return new StatsAPI($this->configuration);
     }
 
-    public function events(): EventsApi
+    public function events(): EventsAPI
     {
-        return new EventsApi($this->configuration);
+        return new EventsAPI($this->configuration);
     }
 
-    public function sites(): SitesApi
+    public function sites(): SitesAPI
     {
-        return new SitesApi($this->configuration);
+        return new SitesAPI($this->configuration);
     }
 }

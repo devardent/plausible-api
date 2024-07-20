@@ -6,7 +6,7 @@ use Devarts\PlausiblePHP\Response\AggregatedMetrics;
 use Devarts\PlausiblePHP\Response\BreakdownCollection;
 use Devarts\PlausiblePHP\Response\TimeseriesCollection;
 
-class StatsApi extends BaseApi
+class StatsAPI extends BaseAPI
 {
     public function getRealtimeVisitors(string $site_id): int
     {

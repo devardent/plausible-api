@@ -2,7 +2,7 @@
 
 namespace Devarts\PlausiblePHP\Api;
 
-class EventsApi extends BaseApi
+class EventsAPI extends BaseAPI
 {
     /**
      * @param string $site_id The domain name of the site in Plausible.
