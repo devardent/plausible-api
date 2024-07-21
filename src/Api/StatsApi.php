@@ -6,6 +6,8 @@ use Devarts\PlausiblePHP\Contract\StatsApiInterface;
 use Devarts\PlausiblePHP\Response\AggregatedMetrics;
 use Devarts\PlausiblePHP\Response\BreakdownCollection;
 use Devarts\PlausiblePHP\Response\TimeseriesCollection;
+use Devarts\PlausiblePHP\Support\Filter;
+use Devarts\PlausiblePHP\Support\Metric;
 
 class StatsApi extends BaseApi implements StatsApiInterface
 {
@@ -24,7 +26,7 @@ class StatsApi extends BaseApi implements StatsApiInterface
     {
         $response = $this->configuration->getClient()->get('v1/stats/aggregate', [
             'query' => array_merge(
-                $extras,
+                $this->normalizeParams($extras),
                 [
                     'site_id' => $site_id,
                 ]
@@ -38,7 +40,7 @@ class StatsApi extends BaseApi implements StatsApiInterface
     {
         $response = $this->configuration->getClient()->get('v1/stats/timeseries', [
             'query' => array_merge(
-                $extras,
+                $this->normalizeParams($extras),
                 [
                     'site_id' => $site_id,
                 ]
@@ -52,7 +54,7 @@ class StatsApi extends BaseApi implements StatsApiInterface
     {
         $response = $this->configuration->getClient()->get('v1/stats/breakdown', [
             'query' => array_merge(
-                $extras,
+                $this->normalizeParams($extras),
                 [
                     'site_id' => $site_id,
                     'property' => $property,
@@ -61,5 +63,18 @@ class StatsApi extends BaseApi implements StatsApiInterface
         ]);
 
         return BreakdownCollection::fromApiResponse($response->getBody()->getContents());
+    }
+
+    private function normalizeParams(array $params): array
+    {
+        return array_map(function ($value) {
+            if ($value instanceof Metric) {
+                return $value->toString();
+            }
+            if ($value instanceof Filter) {
+                return $value->toString();
+            }
+            return $value;
+        }, $params);
     }
 }
