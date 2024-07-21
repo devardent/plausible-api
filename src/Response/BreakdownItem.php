@@ -3,6 +3,7 @@
 namespace Devarts\PlausiblePHP\Response;
 
 /**
+ * @property string $name
  * @property string $goal
  * @property string $page
  * @property string $entry_page
