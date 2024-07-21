@@ -9,7 +9,7 @@ It includes a pre-defined set of classes for API resources that initialize thems
 
 ## Requirements
 
-PHP 8 and later.
+PHP 8.
 
 ## Install
 
