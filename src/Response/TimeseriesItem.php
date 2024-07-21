@@ -3,18 +3,17 @@
 namespace Devarts\PlausiblePHP\Response;
 
 use DateTime;
-use Exception;
 
 /**
  * @property DateTime $date
- * @property float|null $bounce_rate
- * @property float|null $visit_duration
- * @property int|null $pageviews
- * @property int|null $visits
- * @property int|null $visitors
- * @property float|null $views_per_visit
- * @property int|null $events
- * @property float|null $conversion_rate
+ * @property int|float|null $bounce_rate
+ * @property int|float|null $visit_duration
+ * @property int|float|null $pageviews
+ * @property int|float|null $visits
+ * @property int|float|null $visitors
+ * @property int|float|null $views_per_visit
+ * @property int|float|null $events
+ * @property int|float|null $conversion_rate
  */
 class TimeseriesItem extends BaseObject
 {
