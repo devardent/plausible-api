@@ -22,7 +22,10 @@ class TimeseriesCollectionTest extends TestCase
                         "visitors": 16909,
                         "pageviews": 567,
                         "visit_duration": 347,
-                        "visits": 20000
+                        "visits": 20000,
+                        "views_per_visit": 32.2,
+                        "events": 4,
+                        "conversion_rate": 12.5
                     },
                     {
                         "date": "2020-12-02",
@@ -30,7 +33,10 @@ class TimeseriesCollectionTest extends TestCase
                         "visitors": 10200,
                         "pageviews": 345,
                         "visit_duration": 245,
-                        "visits": 10200
+                        "visits": 10200,
+                        "views_per_visit": 25.2,
+                        "events": 20,
+                        "conversion_rate": 8.7
                     }
                   ]
                 }
@@ -45,6 +51,9 @@ class TimeseriesCollectionTest extends TestCase
         $this->assertEquals(567, $item_1->pageviews);
         $this->assertEquals(347, $item_1->visit_duration);
         $this->assertEquals(20000, $item_1->visits);
+        $this->assertEquals(32.2, $item_1->views_per_visit);
+        $this->assertEquals(4, $item_1->events);
+        $this->assertEquals(12.5, $item_1->conversion_rate);
 
         $timeseries->next();
 
@@ -56,6 +65,9 @@ class TimeseriesCollectionTest extends TestCase
         $this->assertEquals(345, $item_2->pageviews);
         $this->assertEquals(245, $item_2->visit_duration);
         $this->assertEquals(10200, $item_2->visits);
+        $this->assertEquals(25.2, $item_2->views_per_visit);
+        $this->assertEquals(20, $item_2->events);
+        $this->assertEquals(8.7, $item_2->conversion_rate);
     }
 
     /**

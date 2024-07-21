@@ -3,8 +3,8 @@
 namespace Devarts\PlausiblePHP\Response;
 
 /**
- * @property int $value
- * @property int $change
+ * @property int|float $value
+ * @property int|float $change
  */
 class AggregatedMetric extends BaseObject
 {

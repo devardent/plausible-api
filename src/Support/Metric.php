@@ -2,7 +2,6 @@
 
 namespace Devarts\PlausiblePHP\Support;
 
-use InvalidArgumentException;
 
 class Metric
 {
@@ -13,6 +12,8 @@ class Metric
     public const EVENTS = 'events';
     public const VISITS = 'visits';
     public const VIEWS_PER_VISIT = 'views_per_visit';
+    public const CONVERSION_RATE = 'conversion_rate';
+    public const TIME_ON_PAGE = 'time_on_page';
 
     /**
      * @var string[]
@@ -66,6 +67,16 @@ class Metric
     public function addViewsPerVisit(): self
     {
         return $this->add(self::VIEWS_PER_VISIT);
+    }
+
+    public function addConversionRate(): self
+    {
+        return $this->add(self::CONVERSION_RATE);
+    }
+
+    public function addTimeOnPage(): self
+    {
+        return $this->add(self::TIME_ON_PAGE);
     }
 
     public function toString(): string

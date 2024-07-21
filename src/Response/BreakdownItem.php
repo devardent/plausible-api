@@ -3,7 +3,7 @@
 namespace Devarts\PlausiblePHP\Response;
 
 /**
- * @property string $name
+ * @property string $goal
  * @property string $page
  * @property string $entry_page
  * @property string $exit_page
@@ -22,12 +22,14 @@ namespace Devarts\PlausiblePHP\Response;
  * @property string $country
  * @property string $region
  * @property string $city
- * @property int|null $visitors
- * @property int|null $pageviews
- * @property int|null $bounce_rate
- * @property int|null $visit_duration
- * @property int|null $events
- * @property int|null $visits
+ * @property int|float|null $bounce_rate
+ * @property int|float|null $visit_duration
+ * @property int|float|null $pageviews
+ * @property int|float|null $visits
+ * @property int|float|null $visitors
+ * @property int|float|null $events
+ * @property int|float|null $conversion_rate
+ * @property int|float|null $time_on_page
  */
 class BreakdownItem extends BaseObject
 {

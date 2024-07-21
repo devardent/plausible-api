@@ -2,42 +2,23 @@
 
 namespace Devarts\PlausiblePHP\Test;
 
-use Devarts\PlausiblePHP\PlausibleAPI;
-use GuzzleHttp\Client;
-use PHPUnit\Framework\TestCase;
+use Devarts\PlausiblePHP\PlausibleApi;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\UriInterface;
 
-class PlausibleAPITest extends TestCase
+class PlausibleEventsApiTest extends PlausibleApiTestCase
 {
     /**
-     * @testWith ["https://plausible.io/api/", null]
-     *           ["https://plausible.io/api/", "https://plausible.io/api/v1/"]
-     *           ["https://plausible.io/api", "https://plausible.io/api/v1"]
-     *           ["https://example.com/path/to/plausible/", "https://example.com/path/to/plausible/v1/"]
-     *           ["https://example.com/path/to/plausible", "https://example.com/path/to/plausible/v1"]
+     * @test
      */
-    public function testBaseUri(string $expected_base_uri, ?string $passed_base_uri): void
-    {
-        if ($passed_base_uri !== null) {
-            $plausible = new PlausibleAPI('an_api_token', $passed_base_uri);
-        } else {
-            $plausible = new PlausibleAPI('an_api_token');
-        }
-
-        /** @var UriInterface $baseUri */
-        $baseUri = $plausible->getClient()->getConfig('base_uri');
-
-        $this->assertSame($expected_base_uri, (string) $baseUri);
-    }
-
-    public function testRecordEvent(): void
+    public function it_should_record_event(): void
     {
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(202);
 
-        $client = $this->createMock(Client::class);
-        $client
+        $configuration = $this->mockConfiguration();
+
+        $configuration
+            ->getClient()
             ->expects($this->once())
             ->method('post')
             ->with(
@@ -65,10 +46,9 @@ class PlausibleAPITest extends TestCase
                 ])
             )->willReturn($response);
 
-        $plausible = new PlausibleAPI('an_api_token');
-        $plausible->setClient($client);
+        $plausible = new PlausibleApi($configuration);
 
-        $this->assertTrue($plausible->recordEvent(
+        $this->assertTrue($plausible->events()->recordEvent(
             'example.com',
             'pageview',
             'https://example.com/path/to/some/page',
@@ -80,13 +60,18 @@ class PlausibleAPITest extends TestCase
         ));
     }
 
-    public function testRecordEventExcludingOptionalValues(): void
+    /**
+     * @test
+     */
+    public function it_should_record_event_excluding_optional_values(): void
     {
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(202);
 
-        $client = $this->createMock(Client::class);
-        $client
+        $configuration = $this->mockConfiguration();
+
+        $configuration
+            ->getClient()
             ->expects($this->once())
             ->method('post')
             ->with(
@@ -105,10 +90,9 @@ class PlausibleAPITest extends TestCase
                 ])
             )->willReturn($response);
 
-        $plausible = new PlausibleAPI('an_api_token');
-        $plausible->setClient($client);
+        $plausible = new PlausibleApi($configuration);
 
-        $this->assertTrue($plausible->recordEvent(
+        $this->assertTrue($plausible->events()->recordEvent(
             'subdomain.example.com',
             'custom.event',
             'https://example.com/path/to/some/page',
@@ -117,18 +101,25 @@ class PlausibleAPITest extends TestCase
         ));
     }
 
-    public function testRecordEventReturnsFalseWhenUnsuccessful(): void
+    /**
+     * @test
+     */
+    public function it_should_not_record_event_when_request_is_unsuccessful(): void
     {
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(400);
 
-        $client = $this->createStub(Client::class);
-        $client->method('post')->willReturn($response);
+        $configuration = $this->mockConfiguration();
 
-        $plausible = new PlausibleAPI('an_api_token');
-        $plausible->setClient($client);
+        $configuration
+            ->getClient()
+            ->expects($this->once())
+            ->method('post')
+            ->willReturn($response);
 
-        $this->assertFalse($plausible->recordEvent(
+        $plausible = new PlausibleApi($configuration);
+
+        $this->assertFalse($plausible->events()->recordEvent(
             'subdomain2.example.com',
             'something-happened',
             'https://example.com/path/to/page',

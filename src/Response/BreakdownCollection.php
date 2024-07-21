@@ -8,6 +8,11 @@ class BreakdownCollection extends BaseCollection
     {
         $data = json_decode($json, true)['results'];
 
+        return self::fromArray($data);
+    }
+
+    public static function fromArray(array $data): self
+    {
         $breakdown = new self();
 
         foreach ($data as $item) {

@@ -4,6 +4,7 @@ namespace Devarts\PlausiblePHP\Response;
 
 /**
  * @property int $id
+ * @property string $display_name
  * @property string $domain
  * @property string $goal_type
  * @property string|null $event_name
@@ -15,6 +16,11 @@ class Goal extends BaseObject
     {
         $data = json_decode($json, true);
 
+        return self::fromArray($data);
+    }
+
+    public static function fromArray(array $data): self
+    {
         $goal = new self();
 
         $goal->createProperties($data);

@@ -3,9 +3,10 @@
 namespace Devarts\PlausiblePHP\Response;
 
 use Countable;
+use Devarts\PlausiblePHP\Contract\ApiResponseObject;
 use Iterator;
 
-abstract class BaseCollection implements Iterator, Countable
+abstract class BaseCollection implements Iterator, Countable, ApiResponseObject
 {
     protected int $position = 0;
     protected array $items = [];

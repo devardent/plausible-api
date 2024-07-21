@@ -9,6 +9,9 @@ namespace Devarts\PlausiblePHP\Response;
  * @property AggregatedMetric $visit_duration
  * @property AggregatedMetric $events
  * @property AggregatedMetric $visits
+ * @property AggregatedMetric $conversion_rate
+ * @property AggregatedMetric $time_on_page
+ * @property AggregatedMetric $views_per_visit
  */
 class AggregatedMetrics extends BaseObject
 {
@@ -16,6 +19,11 @@ class AggregatedMetrics extends BaseObject
     {
         $data = json_decode($json, true)['results'];
 
+        return self::fromArray($data);
+    }
+
+    public static function fromArray(array $data): self
+    {
         $aggregated_metrics = new self();
 
         $aggregated_metrics->createProperties($data);

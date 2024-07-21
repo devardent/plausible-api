@@ -8,6 +8,11 @@ class TimeseriesCollection extends BaseCollection
     {
         $data = json_decode($json, true)['results'];
 
+        return self::fromArray($data);
+    }
+
+    public static function fromArray(array $data): self
+    {
         $timeseries = new self();
 
         foreach ($data as $item) {

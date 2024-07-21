@@ -2,7 +2,6 @@
 
 namespace Devarts\PlausiblePHP\Test\Support;
 
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Devarts\PlausiblePHP\Support\Metric;
 
