@@ -105,7 +105,7 @@ class PlausibleStatsApiTest extends PlausibleApiTestCase
         $plausible = new PlausibleApi($configuration);
 
         $aggregate_metrics = $plausible->stats()->getAggregate('example.com', [
-            'metrics' => $metric->toString()
+            'metrics' => $metric
         ]);
 
         $this->assertEquals(53, $aggregate_metrics->bounce_rate->value);
@@ -183,7 +183,7 @@ class PlausibleStatsApiTest extends PlausibleApiTestCase
         $plausible = new PlausibleApi($configuration);
 
         $timeseries = $plausible->stats()->getTimeseries('example.com', [
-            'metrics' => $metric->toString()
+            'metrics' => $metric
         ]);
 
         $this->assertCount(2, $timeseries);
@@ -268,7 +268,7 @@ class PlausibleStatsApiTest extends PlausibleApiTestCase
         $plausible = new PlausibleApi($configuration);
 
         $breakdowns = $plausible->stats()->getBreakdown('example.com', Property::VISIT_SOURCE, [
-            'metrics' => $metric->toString()
+            'metrics' => $metric
         ]);
 
         $this->assertCount(2, $breakdowns);
