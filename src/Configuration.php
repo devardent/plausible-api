@@ -11,12 +11,6 @@ class Configuration
 
     private function __construct(string $api_key, string $base_uri)
     {
-        // This provides backwards compatibility with the $base_uri in earlier
-        // versions of this library, which assumed a trailing "/v1/" in the path.
-        if (substr($base_uri, -4) === '/v1/' || substr($base_uri, -3) === '/v1') {
-            $base_uri = substr($base_uri, 0, -3);
-        }
-
         $this->client = new Client([
             'base_uri' => $base_uri,
             'headers' => [

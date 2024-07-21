@@ -13,28 +13,6 @@ class PlausibleEventsAPITest extends PlausibleAPITestCase
 {
     /**
      * @test
-     * @testWith ["https://plausible.io/api/", null]
-     *           ["https://plausible.io/api/", "https://plausible.io/api/v1/"]
-     *           ["https://plausible.io/api", "https://plausible.io/api/v1"]
-     *           ["https://example.com/path/to/plausible/", "https://example.com/path/to/plausible/v1/"]
-     *           ["https://example.com/path/to/plausible", "https://example.com/path/to/plausible/v1"]
-     */
-    public function it_should_return_base_uri(string $expected_base_uri, ?string $passed_base_uri): void
-    {
-        if ($passed_base_uri !== null) {
-            $plausible = new PlausibleAPI(Configuration::create('an_api_token', $passed_base_uri));
-        } else {
-            $plausible = new PlausibleAPI(Configuration::create('an_api_token'));
-        }
-
-        /** @var UriInterface $baseUri */
-        $baseUri = $plausible->getConfiguration()->getBaseUri();
-
-        $this->assertSame($expected_base_uri, (string) $baseUri);
-    }
-
-    /**
-     * @test
      */
     public function it_should_record_event(): void
     {
