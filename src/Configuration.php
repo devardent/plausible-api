@@ -18,8 +18,6 @@ class Configuration implements ConfigurationInterface
             ],
             'http_errors' => true,
         ]);
-
-        $this->base_uri = $base_uri;
     }
 
     public static function create(string $api_key, string $base_uri = 'https://plausible.io/api/'): self
