@@ -2,11 +2,12 @@
 
 namespace Devarts\PlausiblePHP\Api;
 
+use Devarts\PlausiblePHP\Contract\StatsApiInterface;
 use Devarts\PlausiblePHP\Response\AggregatedMetrics;
 use Devarts\PlausiblePHP\Response\BreakdownCollection;
 use Devarts\PlausiblePHP\Response\TimeseriesCollection;
 
-class StatsAPI extends BaseAPI
+class StatsAPI extends BaseAPI implements StatsApiInterface
 {
     public function getRealtimeVisitors(string $site_id): int
     {

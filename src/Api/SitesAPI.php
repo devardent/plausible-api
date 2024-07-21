@@ -2,13 +2,14 @@
 
 namespace Devarts\PlausiblePHP\Api;
 
+use Devarts\PlausiblePHP\Contract\SitesApiInterface;
 use Devarts\PlausiblePHP\Response\Goal;
 use Devarts\PlausiblePHP\Response\GoalsListResponse;
 use Devarts\PlausiblePHP\Response\SharedLink;
 use Devarts\PlausiblePHP\Response\Website;
 use Devarts\PlausiblePHP\Response\WebsitesListResponse;
 
-class SitesAPI extends BaseAPI
+class SitesAPI extends BaseAPI implements SitesApiInterface
 {
     public function createWebsite(array $payload): Website
     {
