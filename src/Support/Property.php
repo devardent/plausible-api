@@ -4,6 +4,7 @@ namespace Devarts\PlausiblePHP\Support;
 
 class Property
 {
+    public const EVENT_NAME = 'event:name';
     public const EVENT_GOAL = 'event:goal';
     public const EVENT_HOSTNAME = 'event:hostname';
     public const EVENT_PAGE = 'event:page';
