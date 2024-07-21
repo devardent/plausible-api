@@ -2,9 +2,9 @@
 
 namespace Devarts\PlausiblePHP\Test;
 
-use Devarts\PlausiblePHP\PlausibleAPI;
+use Devarts\PlausiblePHP\PlausibleApi;
 
-class PlausibleSitesAPITest extends PlausibleAPITestCase
+class PlausibleSitesApiTest extends PlausibleApiTestCase
 {
     /**
      * @test
@@ -34,7 +34,7 @@ class PlausibleSitesAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $website = $plausible->sites()->createWebsite(['domain' => 'test-domain.com']);
 
@@ -70,7 +70,7 @@ class PlausibleSitesAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $website = $plausible->sites()->updateWebsite('test-domain.com', [
             'domain' => 'test-domain-edit.com',
@@ -102,7 +102,7 @@ class PlausibleSitesAPITest extends PlausibleAPITestCase
                 $this->equalTo('v1/sites/' . urlencode('test-domain.com'))
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $this->assertTrue($plausible->sites()->deleteWebsite('test-domain.com'));
     }
@@ -150,7 +150,7 @@ class PlausibleSitesAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $websites_list_response = $plausible->sites()->listWebsites([
             'after'  => 'id_1',
@@ -200,7 +200,7 @@ class PlausibleSitesAPITest extends PlausibleAPITestCase
                 $this->equalTo('v1/sites/' . urlencode('test-domain.com'))
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $website = $plausible->sites()->getWebsite('test-domain.com');
 
@@ -237,7 +237,7 @@ class PlausibleSitesAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $link = $plausible->sites()->createSharedLink([
             'site_id' => 'test-domain.com',
@@ -298,7 +298,7 @@ class PlausibleSitesAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $goals_list_response = $plausible->sites()->listGoals('test-domain.com', [
             'after'  => 'id_1',
@@ -365,7 +365,7 @@ class PlausibleSitesAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $goal = $plausible->sites()->createGoal([
             'site_id'    => 'test_domain.com',
@@ -407,7 +407,7 @@ class PlausibleSitesAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $this->assertTrue($plausible->sites()->deleteGoal(1, 'test-domain.com'));
     }

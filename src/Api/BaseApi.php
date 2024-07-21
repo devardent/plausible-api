@@ -4,7 +4,7 @@ namespace Devarts\PlausiblePHP\Api;
 
 use Devarts\PlausiblePHP\Configuration;
 
-abstract class BaseAPI
+abstract class BaseApi
 {
     protected Configuration $configuration;
 

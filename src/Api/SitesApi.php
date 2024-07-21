@@ -9,7 +9,7 @@ use Devarts\PlausiblePHP\Response\SharedLink;
 use Devarts\PlausiblePHP\Response\Website;
 use Devarts\PlausiblePHP\Response\WebsitesListResponse;
 
-class SitesAPI extends BaseAPI implements SitesApiInterface
+class SitesApi extends BaseApi implements SitesApiInterface
 {
     public function createWebsite(array $payload): Website
     {

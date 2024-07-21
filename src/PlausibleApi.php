@@ -2,15 +2,15 @@
 
 namespace Devarts\PlausiblePHP;
 
-use Devarts\PlausiblePHP\Api\EventsAPI;
-use Devarts\PlausiblePHP\Api\SitesAPI;
-use Devarts\PlausiblePHP\Api\StatsAPI;
+use Devarts\PlausiblePHP\Api\EventsApi;
+use Devarts\PlausiblePHP\Api\SitesApi;
+use Devarts\PlausiblePHP\Api\StatsApi;
 use Devarts\PlausiblePHP\Contract\EventsApiInterface;
 use Devarts\PlausiblePHP\Contract\PlausibleApiInterface;
 use Devarts\PlausiblePHP\Contract\SitesApiInterface;
 use Devarts\PlausiblePHP\Contract\StatsApiInterface;
 
-class PlausibleAPI implements PlausibleApiInterface
+class PlausibleApi implements PlausibleApiInterface
 {
     private StatsApiInterface $stats_api;
     private EventsApiInterface $events_api;
@@ -18,9 +18,9 @@ class PlausibleAPI implements PlausibleApiInterface
 
     public function __construct(Configuration $configuration)
     {
-        $this->stats_api = new StatsAPI($configuration);
-        $this->events_api = new EventsAPI($configuration);
-        $this->sites_api = new SitesAPI($configuration);
+        $this->stats_api = new StatsApi($configuration);
+        $this->events_api = new EventsApi($configuration);
+        $this->sites_api = new SitesApi($configuration);
     }
 
     public function stats(): StatsApiInterface

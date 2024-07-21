@@ -3,13 +3,13 @@
 namespace Devarts\PlausiblePHP\Test;
 
 use Devarts\PlausiblePHP\Configuration;
-use Devarts\PlausiblePHP\PlausibleAPI;
+use Devarts\PlausiblePHP\PlausibleApi;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
 
-class PlausibleEventsAPITest extends PlausibleAPITestCase
+class PlausibleEventsApiTest extends PlausibleApiTestCase
 {
     /**
      * @test
@@ -50,7 +50,7 @@ class PlausibleEventsAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($response);
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $this->assertTrue($plausible->events()->recordEvent(
             'example.com',
@@ -94,7 +94,7 @@ class PlausibleEventsAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($response);
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $this->assertTrue($plausible->events()->recordEvent(
             'subdomain.example.com',
@@ -121,7 +121,7 @@ class PlausibleEventsAPITest extends PlausibleAPITestCase
             ->method('post')
             ->willReturn($response);
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $this->assertFalse($plausible->events()->recordEvent(
             'subdomain2.example.com',

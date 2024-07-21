@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
-class PlausibleAPITestCase extends TestCase
+class PlausibleApiTestCase extends TestCase
 {
     protected function mockResponse(string $expected_response): ResponseInterface
     {

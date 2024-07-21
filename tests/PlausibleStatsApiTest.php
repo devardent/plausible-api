@@ -2,11 +2,11 @@
 
 namespace Devarts\PlausiblePHP\Test;
 
-use Devarts\PlausiblePHP\PlausibleAPI;
+use Devarts\PlausiblePHP\PlausibleApi;
 use Devarts\PlausiblePHP\Support\Metric;
 use Devarts\PlausiblePHP\Support\Property;
 
-class PlausibleStatsAPITest extends PlausibleAPITestCase
+class PlausibleStatsApiTest extends PlausibleApiTestCase
 {
     /**
      * @test
@@ -30,7 +30,7 @@ class PlausibleStatsAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $this->assertEquals(21, $plausible->stats()->getRealtimeVisitors('example.com'));
     }
@@ -102,7 +102,7 @@ class PlausibleStatsAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $aggregate_metrics = $plausible->stats()->getAggregate('example.com', [
             'metrics' => $metric->toString()
@@ -180,7 +180,7 @@ class PlausibleStatsAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $timeseries = $plausible->stats()->getTimeseries('example.com', [
             'metrics' => $metric->toString()
@@ -265,7 +265,7 @@ class PlausibleStatsAPITest extends PlausibleAPITestCase
                 ])
             )->willReturn($this->mockResponse($expected_response));
 
-        $plausible = new PlausibleAPI($configuration);
+        $plausible = new PlausibleApi($configuration);
 
         $breakdowns = $plausible->stats()->getBreakdown('example.com', Property::VISIT_SOURCE, [
             'metrics' => $metric->toString()

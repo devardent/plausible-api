@@ -4,7 +4,7 @@ namespace Devarts\PlausiblePHP\Api;
 
 use Devarts\PlausiblePHP\Contract\EventsApiInterface;
 
-class EventsAPI extends BaseAPI implements EventsApiInterface
+class EventsApi extends BaseApi implements EventsApiInterface
 {
     public function recordEvent(
         string $site_id,
