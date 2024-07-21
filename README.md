@@ -9,7 +9,7 @@ It includes a pre-defined set of classes for API resources that initialize thems
 
 ## Requirements
 
-PHP 7.4 and later.
+PHP 8 and later.
 
 ## Install
 
@@ -24,25 +24,26 @@ $ composer require devarts/plausible-php
 Simple usage looks like:
 
 ``` php
-use Devarts\PlausiblePHP\PlausibleAPI;
-use Devarts\PlausiblePHP\Support\Period;
+use Devarts\PlausiblePHP\Configuration;
+use Devarts\PlausiblePHP\PlausibleApi;
 use Devarts\PlausiblePHP\Support\Metric;
 use Devarts\PlausiblePHP\Support\Filter;
 
-$plausible = new PlausibleAPI('{plausible_api_token}');
+$plausible = new PlausibleApi(Configuration::create('plausible_api_token'));
 
-$metrics = Metric::create()->addBounceRate()->addVisitors();
-$filters = Filter::create()->addVisitBrowser('Chrome', Filter::NOT_EQUAL);
+$metrics = Metric::create()
+    ->addBounceRate()
+    ->addVisitors();
 
-$timeseries = $plausible->getTimeseries('example.com', [
-    'period'  => Period::DAYS_30,
-    'metrics' => $metrics->toString(),
-    'filters' => $filters->toString(),
+$filters = Filter::create()
+    ->addVisitBrowser('Chrome', Filter::NOT_EQUAL);
+
+$result = $plausible->stats()->getAggregate('example.com', [
+    'metrics' => $metrics,
+    'filters' => $filters,
 ]);
 
-foreach ($timeseries as $timepoint) {
-    echo "{$timepoint->date->format('Y-m-d')} | {$timepoint->bounce_rate} | {$timepoint->visitors}";
-}
+echo $result->bounce_rate->value;
 ```
 
 ## Credits
