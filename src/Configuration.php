@@ -2,11 +2,11 @@
 
 namespace Devarts\PlausiblePHP;
 
+use Devarts\PlausiblePHP\Contract\ConfigurationInterface;
 use GuzzleHttp\Client;
 
-class Configuration
+class Configuration implements ConfigurationInterface
 {
-    private string $base_uri;
     private Client $client;
 
     private function __construct(string $api_key, string $base_uri)
@@ -30,10 +30,5 @@ class Configuration
     public function getClient(): Client
     {
         return $this->client;
-    }
-
-    public function getBaseUri(): string
-    {
-        return $this->base_uri;
     }
 }

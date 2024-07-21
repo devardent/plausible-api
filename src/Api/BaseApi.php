@@ -2,13 +2,13 @@
 
 namespace Devarts\PlausiblePHP\Api;
 
-use Devarts\PlausiblePHP\Configuration;
+use Devarts\PlausiblePHP\Contract\ConfigurationInterface;
 
 abstract class BaseApi
 {
-    protected Configuration $configuration;
+    protected ConfigurationInterface $configuration;
 
-    public function __construct(Configuration $configuration)
+    public function __construct(ConfigurationInterface $configuration)
     {
         $this->configuration = $configuration;
     }
