@@ -2,7 +2,6 @@
 
 namespace Devarts\PlausiblePHP\Support;
 
-use InvalidArgumentException;
 
 class Metric
 {

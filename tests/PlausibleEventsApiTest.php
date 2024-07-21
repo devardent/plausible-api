@@ -2,12 +2,8 @@
 
 namespace Devarts\PlausiblePHP\Test;
 
-use Devarts\PlausiblePHP\Configuration;
 use Devarts\PlausiblePHP\PlausibleApi;
-use GuzzleHttp\Client;
-use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\UriInterface;
 
 class PlausibleEventsApiTest extends PlausibleApiTestCase
 {

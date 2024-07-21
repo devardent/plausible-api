@@ -2,7 +2,6 @@
 
 namespace Devarts\PlausiblePHP\Test\Response;
 
-use Devarts\PlausiblePHP\Response\GoalCollection;
 use Devarts\PlausiblePHP\Response\WebsiteCollection;
 use PHPUnit\Framework\TestCase;
 
