@@ -39,7 +39,7 @@ jobs:
           composer install
       - name: Run code style check
         run: |
-          vendor/bin/phpstan ecs
+          vendor/bin/ecs
 
   tests:
     name: Tests
